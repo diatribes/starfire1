@@ -1,0 +1,13 @@
+void mainImage(out vec4 o, vec2 u) {
+    float i,a,d,s,t=iTime;
+    vec3  p,r = iResolution;
+    for(o*=i; i++<1e2;
+        d += s = .005+abs(s) * .5,
+        o += vec4(11,2.3-cos(.5*t),.8,0)/s)
+        for (p = vec3(((u-r.xy/2.)/r.y*(1.-cos(.5*t)*.05)+cos(t*.3)*vec2(.02,.03)) * d, d - 9.),
+            s = length(p) - 5.8,
+            a = 1.; a < 24.; a += a)
+            p += cos(.15*t+a+p.yzx*3.)*.3,
+            s -= abs(dot(sin(.14*t+p * a * 6.), .05+p-p)) / a;
+    o = tanh(o / 1e4);
+}
