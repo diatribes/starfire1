@@ -19,13 +19,16 @@ Two dependencies aren't in the repo. Place them first:
 ./build.sh crinkler     # -> build/intro.exe  (~1304 bytes)
 ```
 
+On Windows, `build.bat crinkler` is the native equivalent (same clang, native
+Crinkler with `/ORDERTRIES` + `/UNSAFEIMPORT`). It hasn't been tested yet; see Gotchas.
+
 Run `build/intro.exe` on Windows, or under Wine with a GL-capable prefix. For a
 movable dev window, compile `src/intro.c` with `-DWINDOWED` and link with lld-link.
 
 ## Gotchas
 
-- Only the Linux/Wine build (`build.sh`) exists; there's no native Windows
-  `build.bat` yet.
+- `build.sh` (Linux/Wine) is the validated build path. `build.bat` is the native
+  Windows counterpart but hasn't been tested on real Windows yet.
 - `build.sh` omits Crinkler's `/UNSAFEIMPORT`: under Wine it crashes the packer
   (the `DefWindowProcA` forwarded RVA). Safe to re-add on a native Windows build.
 - Under Wine, an EGL-based build needs `__EGL_VENDOR_LIBRARY_FILENAMES` pointed at
