@@ -1,8 +1,11 @@
 # starfire1
 
-A 1.3 KB Windows intro: a fullscreen raymarched sun over a deep brown-noise
-rumble, packed with Crinkler. No CRT. Its color, size, and the rumble all pulse
-together on a ~12 s cycle, with a fade in and out.
+A 1.3 KB exe with raymarched sun and brown-noise audio.
+Packed with Crinkler. No CRT. Color and size sync'd with noise.
+Fades in and out (audio and gfx)
+
+Mostly just tinkering. Seeing what I can get setup for cross-platform shader dev.
+Tiny binaries, some basic audio, stuff like that.
 
 ![starfire1](starfire1.gif)
 
