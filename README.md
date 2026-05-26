@@ -33,8 +33,9 @@ movable dev window, compile `src/intro.c` with `-DWINDOWED` and link with lld-li
 
 - `build.sh` (Linux/Wine) is the validated build path. `build.bat` is the native
   Windows counterpart but hasn't been tested on real Windows yet.
-- `build.sh` omits Crinkler's `/UNSAFEIMPORT`: under Wine it crashes the packer
-  (the `DefWindowProcA` forwarded RVA). Safe to re-add on a native Windows build.
+- Crinkler builds are deterministic because the shipped build uses a stub window
+  proc and imports no `DefWindowProcA` (under Wine that is a forwarded RVA that
+  crashed the packer). `/UNSAFEIMPORT` is left off only for no size benefit here.
 - Under Wine, an EGL-based build needs `__EGL_VENDOR_LIBRARY_FILENAMES` pointed at
   your GPU's OpenGL ICD, or the window renders black.
 
