@@ -79,10 +79,7 @@ static LRESULT CALLBACK wndproc(HWND h, UINT m, WPARAM w, LPARAM l) {
 }
 #else
 /* Shipped build: a stub class proc that returns 1. This avoids importing
-   DefWindowProcA, whose Wine forwarded RVA (-> ntdll) crashes Crinkler. The
-   borderless fullscreen popup needs no real message handling: WM_NCCREATE only
-   needs TRUE to let the window create, GL repaints the whole client each frame,
-   and Esc is polled in the loop. See crinkler.md. */
+   DefWindowProcA, which was crashing Crinkler on my setup. */
 static LRESULT CALLBACK stubproc(HWND h, UINT m, WPARAM w, LPARAM l) {
     return 1;
 }
