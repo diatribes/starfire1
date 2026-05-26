@@ -19,6 +19,10 @@ clang --target=i686-pc-windows-msvc -Oz -fno-stack-protector \
 
 if [ "${1:-}" = "crinkler" ]; then
   echo "[*] linking with Crinkler (Wine)"
+  # Drop any prior output first: a wedged Crinkler from an earlier crash can keep
+  # build/intro.exe open and make the next run fail with "Cannot open ... for
+  # writing". Unlinking the path lets this run create a fresh inode regardless.
+  rm -f build/intro.exe
   # Note: /UNSAFEIMPORT is dropped here. Under Wine, DefWindowProcA imports via a
   # forwarded RVA (-> ntdll), and /UNSAFEIMPORT + that forward crashes Crinkler
   # ("Oops! Crinkler has crashed", 0-byte output) for the current code layout.
