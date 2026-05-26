@@ -16,7 +16,7 @@ void *memset(void *d, int c, size_t n) {
 #define DUR  30
 #endif
 #define NS   (SR * DUR)
-static short      *g_audio;
+static short       g_audio[NS];   /* BSS: drops the VirtualAlloc import */
 static HWAVEOUT    g_hwo;
 static WAVEHDR     g_hdr;
 static DWORD       g_t0;
@@ -50,7 +50,6 @@ static void audio_start(void) {
     wf.nBlockAlign     = 2;
     wf.nAvgBytesPerSec = SR * 2;
 
-    g_audio = (short *)VirtualAlloc(0, (SIZE_T)NS * 2, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     render_audio(g_audio, NS);
 
     waveOutOpen(&g_hwo, WAVE_MAPPER, &wf, 0, 0, CALLBACK_NULL);
