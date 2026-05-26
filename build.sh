@@ -23,14 +23,14 @@ if [ "${1:-}" = "crinkler" ]; then
   # build/intro.exe open and make the next run fail with "Cannot open ... for
   # writing". Unlinking the path lets this run create a fresh inode regardless.
   rm -f build/intro.exe
-  # The shipped build no longer imports DefWindowProcA (it uses a stub class proc,
-  # see src/intro.c and crinkler.md). That import was a Wine forwarded RVA that
-  # crashed Crinkler nondeterministically; without it, builds are deterministic.
-  # /UNSAFEIMPORT is left off only because it gives no size benefit for this binary
-  # (same bytes with or without); it is safe to add now if a future layout differs.
+  # The shipped build uses a stub window proc and imports no DefWindowProcA, whose
+  # Wine forwarded RVA used to crash Crinkler. With it gone, builds are
+  # deterministic and /ORDERTRIES is usable under Wine (it re-links many times, so
+  # it used to amplify that crash); it shaves a few bytes. /UNSAFEIMPORT is left off
+  # because it gives no size benefit here.
   wine tools/crinkler30a/Win32/Crinkler.exe \
       /SUBSYSTEM:WINDOWS /ENTRY:entry /NODEFAULTLIB \
-      /RANGE:opengl32 /COMPMODE:SLOW /TINYHEADER /TINYIMPORT \
+      /RANGE:opengl32 /COMPMODE:SLOW /TINYHEADER /TINYIMPORT /ORDERTRIES:4000 \
       /OUT:build/intro.exe build/intro.obj $LIBS /LIBPATH:$LIBPATH
 else
   echo "[*] linking with lld-link (debug)"

@@ -4,11 +4,10 @@ rem keep the two in sync. Uses clang (i686 msvc target, no CRT), same as build.s
 rem   build.bat            debug link with lld-link
 rem   build.bat crinkler   final link with Crinkler (native)
 rem
-rem Native enables two flags build.sh leaves off: /ORDERTRIES (crashes Crinkler
-rem under Wine; safe and ~10 B smaller on real Windows) and /UNSAFEIMPORT (no size
-rem benefit was seen under Wine; may help natively). The DefWindowProcA forwarded-
-rem RVA crash that used to bite under Wine no longer applies: the shipped build
-rem uses a stub class proc and imports no DefWindowProcA (see crinkler.md).
+rem build.sh and build.bat share /ORDERTRIES now (usable under Wine since the
+rem shipped build dropped the DefWindowProcA import via a stub window proc). The
+rem only native-only flag here is /UNSAFEIMPORT (no size benefit was seen under
+rem Wine; may help natively).
 setlocal
 cd /d "%~dp0"
 

@@ -23,8 +23,8 @@ Two dependencies aren't in the repo. Place them first:
 ./build.sh crinkler     # -> build/intro.exe  (~1.3kb)
 ```
 
-On Windows, `build.bat crinkler` is the native equivalent (same clang, native
-Crinkler with `/ORDERTRIES` + `/UNSAFEIMPORT`). It hasn't been tested yet; see Gotchas.
+On Windows, `build.bat crinkler` is the native equivalent; it also passes
+`/UNSAFEIMPORT` (native-only here). It hasn't been tested yet; see Gotchas.
 
 Run `build/intro.exe` on Windows, or under Wine with a GL-capable prefix. For a
 movable dev window, compile `src/intro.c` with `-DWINDOWED` and link with lld-link.
