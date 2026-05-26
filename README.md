@@ -3,6 +3,7 @@
 A 1.3 KB exe with raymarched sun and brown-noise audio.
 Packed with Crinkler. No CRT. Color and size sync'd with noise.
 Fades in and out (audio and gfx)
+30 second duration or ESC to quit.
 
 Mostly just tinkering. Seeing what I can get setup for cross-platform shader dev.
 Tiny binaries, some basic audio, stuff like that.
@@ -19,7 +20,7 @@ Two dependencies aren't in the repo. Place them first:
   `xwin --accept-license splat --output sdk`
 
 ```sh
-./build.sh crinkler     # -> build/intro.exe  (~1304 bytes)
+./build.sh crinkler     # -> build/intro.exe  (~1.3kb)
 ```
 
 On Windows, `build.bat crinkler` is the native equivalent (same clang, native
