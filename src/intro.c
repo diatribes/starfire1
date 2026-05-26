@@ -132,6 +132,7 @@ void entry(void) {
         MSG   msg;
         float t;
         if (PeekMessageA(&msg, 0, 0, 0, PM_REMOVE)) DispatchMessageA(&msg);
+        if (GetAsyncKeyState(VK_ESCAPE)) ExitProcess(0);
         glViewport(0, 0, g_w, g_h);
         t = audio_time();
         if (t >= (float)DUR) break;
